@@ -3,3 +3,4 @@ venv/
 .vscode/
 __pycache__/
 app/__pycache__
+app/static/img/upload/
