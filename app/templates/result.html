@@ -1,0 +1,38 @@
+{% extends "templates/template.html" %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block main %}
+
+<div class ="content-section" id = "form">
+	<form method ="GET" enctype=multipart/form-data action ="/">
+		{{ form.hidden_tag() }}
+		<fieldset class="form-group">
+			<legend class = "border-bottom mb-4"> Result</legend>
+				<div class = "form-group" id="form">
+                    </br>
+                </div>
+                <div class = "form-group">                   
+					<img src="{{path}}" width = "56", height="56"> 
+				</div>
+				<div class ="result">
+					Evaluation: {{ pred }}<br>
+				</div>
+				<div class = "possibility">
+					Evaluation possibility of 0 to 9:<br>
+					{% for row in result %} 
+						{{loop.index - 1}} : {{(row * 100)|round(2, 'common')}} % <br>
+					{% endfor %}
+				</div>
+        </fieldset>
+		{{ form.submit(class="btn btn-outline-info")}}
+    </form>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+ // alert("Template inheritance is awesome");
+</script>
+{% endblock %}

@@ -1,0 +1,5 @@
+# ignore all files within venv directory
+venv/
+.vscode/
+__pycache__/
+app/__pycache__
