@@ -5,5 +5,5 @@ python -m pip install tensorflow-cpu
 set FLASK_APP=run.py
 set FLASK_ENV="development"
 set FLASK_DEBUG=1
-start chrome http://127.0.0.1:5000/
+echo "Open Browser to http://127.0.0.1:5000/"
 python -m flask run
