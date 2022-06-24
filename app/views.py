@@ -16,7 +16,7 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def evaluate_img(path, white_bg):
+def evaluate_img(path):
     img = image.load_img(path, color_mode ='grayscale', target_size=(28, 28))
     # if white_bg:
     #     img = Image.fromarray(np.invert(img))
@@ -41,7 +41,8 @@ def upload_file():
             path = os.path.join(app.root_path, 
                 'static/img/upload/', new_filename)
             file.save(path)
-            result = evaluate_img(path, form.white_background.data)
+            result = evaluate_img(path)
+            # result = evaluate_img(path, form.white_background.data)
             pred = int(np.argmax(result, axis=-1))
             form = ResultForm()
             return render_template("result.html", title="Result", form = form, 
