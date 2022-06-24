@@ -18,9 +18,11 @@ def allowed_file(filename):
 
 def evaluate_img(path, white_bg):
     img = image.load_img(path, color_mode ='grayscale', target_size=(28, 28))
-    if white_bg:
-        img = Image.fromarray(np.invert(img))
+    # if white_bg:
+    #     img = Image.fromarray(np.invert(img))
     x = image.img_to_array(img)
+    if np.average(x)-128 > 0:
+        x = 255 - x
     x /= 255
     x = np.expand_dims(x, axis=0)
     y_proba = model_s.predict(x)
