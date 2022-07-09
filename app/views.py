@@ -6,6 +6,7 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 import numpy as np
 from keras.preprocessing import image
+from keras.utils import load_img
 from keras.models import load_model
 from PIL import Image
 
