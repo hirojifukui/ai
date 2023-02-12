@@ -5,9 +5,10 @@ from app.forms import (UploadForm, ResultForm)
 from datetime import datetime
 from werkzeug.utils import secure_filename
 import numpy as np
-from keras_preprocessing import image
+#from keras_preprocessing import image
+from keras.utils import load_img, img_to_array
 from keras.models import load_model
-from PIL import Image
+#from PIL import Image
 
 model_s = load_model("app/static/model/mnist_Adam2_20210516.h5")
 path = ""; secure_files = []
@@ -17,10 +18,10 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def evaluate_img(path):
-    img = image.load_img(path, color_mode ='grayscale', target_size=(28, 28))
+    img = load_img(path, color_mode ='grayscale', target_size=(28, 28))
     # if white_bg:
     #     img = Image.fromarray(np.invert(img))
-    x = image.img_to_array(img)
+    x = img_to_array(img)
     if np.average(x)-128 > 0:
         x = 255 - x
     x /= 255
